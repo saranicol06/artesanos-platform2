@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -21,8 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set Python path
-        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+      - name: Set Python path to root
+        run: echo "PYTHONPATH=$PYTHONPATH:${GITHUB_WORKSPACE}" >> $GITHUB_ENV
 
       - name: Run tests with pytest
+        working-directory: ${{ github.workspace }}
         run: pytest -q

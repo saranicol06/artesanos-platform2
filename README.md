@@ -2,7 +2,7 @@
 
 Plataforma web para artesanos colombianos: gestión de productos, inventario y ventas online.
 
-## 🚀 Tecnologías
+## Tecnologías
 - Backend: Node.js / Python / Java
 - Frontend: React/Vue
 - Base de datos: PostgreSQL
@@ -10,4 +10,12 @@ Plataforma web para artesanos colombianos: gestión de productos, inventario y v
 - Seguridad: SonarQube, Trivy, OWASP ZAP
 - Contenedores: Docker + Kubernetes
 
-## ▶️ Cómo ejecutar el backend
+## Cómo ejecutar el backend
+```
+npm install
+npm run dev
+```
+
+## 👨‍👩‍👧 Integrantes
+- Sara Nicol Zuluaga 
+- Axel Daniel Bedoya

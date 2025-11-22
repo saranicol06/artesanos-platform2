@@ -19,30 +19,25 @@ jobs:
       - name: 📥 Checkout del código
         uses: actions/checkout@v4
 
-      - name: 🔧 Configurar Node.js
-        uses: actions/setup-node@v4
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '18'
+          python-version: "3.10"
 
       - name: 📦 Instalar dependencias
-        run: npm install
-
-      - name: 🧪 Ejecutar tests
-        run: npm test --if-present
-
-      - name: 🛠️ Verificar formato y lint (si existen)
         run: |
-          npm run lint --if-present
-          npm run format --if-present
+          python -m pip install --upgrade pip
+          pip install -r src/backend/requirements.txt
+          pip install pytest pytest-asyncio httpx
 
-      - name: 📁 Crear artefacto (build)
-        run: npm run build --if-present
+      - name: 🧪 Ejecutar tests con pytest
+        run: pytest -q
 
-      - name: ⬆️ Subir artefacto generado
+      - name: 📁 Subir artefactos (si existen)
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifact
+          name: test-artifact
           path: |
-            dist
-            build
-            ./
+            .
+          if-no-files-found: ignore
+
